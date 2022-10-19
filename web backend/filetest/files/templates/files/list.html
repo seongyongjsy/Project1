@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>파일 목록</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>파일 목록</h1>
+
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>메모</th>
+                <th>파일명</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in file_list %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td>{{ file.memo }}</td>
+                <td>
+                    {% if file.original_file_name %}
+                    <a href="{% url 'files:download' file.id %}">{{ file.orginal_file_name|default_if_none:'파일 없음' }}</a>
+                    {% else %}
+                    {{ file.original_file_name|default_if_none:'파일 없음' }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{% 'files:upload' %}">파일 업로드</a>
+ 
+    <!-- 검색창 -->
+    <form method="get">
+        {% csrf_token %}
+        <select name="searchType">
+            {% if searchType =='memo' %}
+            <option value="memo" selected="selected">메모</option>
+            {% else %}
+            <option value="memo">메모</option>
+            {% endif %}
+            {% if searchType == 'originalFileName' %}
+            <option value="originalFileName" selected="selected" >파일명</option>
+            {% else %}
+            <option value="originalFileName">파일명</option>
+            {% endif %}
+        </select>
+        <input type="text" name="searchWord" value="{{ searchWord }}">
+        <input type="submit" value="검색">
+    </form>
+    {% comment %}
+    <ul>
+        <li>page_obj: {{ page_obj }}</li>
+        <li>page_obj.number: {{ page_obj.number }}</li>v
+
+        <li>page_obj.has_next: {{ page_obj.has_next }}</li>
+        <li>page_obj.has_previous: {{ page_obj.has_previous }}</li>
+        <li>page_obj.has_other_pages: {{ page_obj.has_other_pages }}</li>
+        
+        <li>page_obj.next_page_number: {{ page_obj.next_page_number }}</li>
+        <li>page_obj.previous_page_number: {{ page_obj.previous_page_number }}</li>
+
+        <li>page_obj.start_index: {{ page_obj.start_index }}</li>
+        <li>page_obj.end_index: {{ page_obj.end_index }}</li>
+        <li>page_obj.object_list: {{ page_obj.object_list }}</li>
+
+        <li>
+            <ul>
+                <li>page_obj.paginator: {{ page.obj.paginator }}</li>
+                <li>page_obj.paginaor.num_pages: {{ page_obj.paginaor.num_pages }}</li>
+                <li>page_obj.paginaor.page_range: {{ page_obj.paginaor.page_range }}</li>
+                <li>page_obj.paginaor.count: {{ page_obj.paginator.count }}</li>
+                <li>page_obj.paginaor.object_list: {{ page_obj.paginaor.object_list }}</li>
+                <li>page_obj.paginaor.per_page: {{ page_obj.paginaor.per_page }}</li>
+            </ul>
+        </li>
+    </ul>
+    {% endcomment %}
+
+    {% comment %}
+    {% for page in page_obj.paginator.page_range %}
+    <a href="{% url 'files:list' %}?page={{ page }}">{{ page }}</a>
+    {% endfor %}
+    {% endcomment %}
+
+    {% if page_obj.has_previous %}
+    <!-- 이전 페이지가 존재하면 이동하는 화살표 추가 -->
+    <a href="{% url 'files:list' %}?page={{ page_obj.number|add:-1 }}">◀</a>
+    {% endif %}
+
+    {% if page_obj.number == page_obj.paginator.num_pages %}
+    <!-- 마지막 페이지를 조회중일 때, 맨 앞에 페이지 하나 추가 -->
+    <a href="{% url 'files:list' %}?page={{ page_obj.number|add:-4 > 0 %}}">{{ page_obj.number|add:-4 }}</a>
+    {% endif %}
+
+    <!-- 반복문을 통해서 현재 조회 중인 페이지 -2부터 +2 사이의 페이지 출력 -->
+    {% if page_obj.number >= page_obj.paginator.num_pages|add:-1 and page_obj.number|add:-3 > 0 %}
+    <a href="{% url 'files:list' %}?page={{ page_obj.number|add:-3 }}">{{ page_obj.number|add:-3 }}</a>
+    {% endif %}
+
+    <!-- 반복문을 통해서 현재 조회 중인 페이지 -2부터 +2 사이의 페이지 출력 -->
+    {% for page in page_obj.paginator.page_range %}
+        {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+            {% if page == page_obj.number %}
+            <a href="{% url 'files:list' %}?page={{ page }}" style="font-size: 200%;"><b>{{ page }}</b></a>
+            {% else %}
+            <a href="{% url 'files:list' %}?page={{ page }}">{{ page }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.number >= 1 and page_obj.number <= 2 and page_obj.number|add:3 <= page_obj.paginator.num_pages %}
+    <!-- 1 페이지 또는 2페이지를 조회중일 때, 뒤에 한 페이지 추가 -->
+    <a href="{% url 'files:list' %}?page={{ page_obj.number|add:3 }}">{{ page_obj.number|add:3 }}</a>    
+    {% endif %}
+
+    {% if page_obj.number == 1 and page_obj.paginator.num_pages >= 5 %}
+    <!-- 1 페이지를 조회중일 때, 맨 뒤에 한 페이지 추가  -->
+    <a href="{% url 'files:list' %}?page=5">5</a>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+    <!-- 다음 페이지가 존재하면 이동하는 화살표 추가 -->
+    <a href="{% url 'files:list' %}?page={{ page_obj.number|add:1 }}">▶</a>
+    {% endif %} 
+</body>
+</html>

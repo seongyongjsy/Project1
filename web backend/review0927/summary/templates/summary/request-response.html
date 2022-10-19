@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>요청-응답 처리</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        pre {font-size: 16px; background-color: beige;}
+        .comment {color: green;}
+        .keyword {color: violet;}
+        .variable {color: blue;}
+        .function {color: brown;}
+    </style>
+</head>
+<body>
+    <h1>요청-응답 처리</h1>
+    <p>웹 사이트는 브라우저(클라이언트)와 서버 간에 요청과 응답을 통해 통신을 한다.</p>
+    <ul>
+        <li>
+            요청(request): 클라이언트에서 서버로 통신하는 것.
+            브라우저의 주소 입력 창에 적절한 URL을 입력하거나,
+            a 태그, 자바스크립트의 location.href 등을 통해
+            브라우저에서 서버로 요청을 보낼 수 있음.
+            <ul>
+                <li>
+                    GET: 요청 시 데이터를 URL에 붙여서 보내는 방식.
+                    주로 검색, 데이터 조회 등 보안이 중요하지 않는 기능에 사용.
+                </li>
+                <li>
+                    POST: 요청 시 데이터를 HTML body에 숨겨서 보내는 방식.
+                    주로 입력, 수정, 삭제 등 보안이 중요한 기능에 사용.
+                </li>
+            </ul>
+        </li>
+        <li>
+            응답(response): 서버에서 클라이언트로 통신하는 것.
+            서버에서 제시한 URL로 요청이 들어오면 서버가 이를 받아들여
+            프로젝트 내에서 적절한 함수 또는 클래스로 이를 처리하고
+            지정된 문자열 데이터 또는 템플릿 등을 브라우저로 보낼 수 있음.
+            <ul>
+                <li>일반 응답 방식: 문자열 데이터 또는 템플릿을 되돌려주는 일반적인 응답 방식.</li>
+                <li>redirect 방식: 다른 뷰 함수를 재실행시키는 방식. 다른 뷰를 재활용하는 방식.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>장고에서 요청-응답 처리 흐름</h2>
+    <ol>
+        <li>브라우저에서 요청을 보냄.</li>
+        <li>최상위 URL 구성 파일 실행.</li>
+        <li>
+            작성된 URL 패턴과 일치하는지 확인.
+            <ol>
+                <li>하위 URL 구성 파일 실행.</li>
+                <li>일치하는 패턴이 있으면 연결된 뷰 함수 실행.</li>
+                <li>뷰 함수에서 설정된 방법으로 응답.</li>
+            </ol>
+        </li>
+        <li>일치하는 패턴이 있으면 연결된 뷰 함수 실행.</li>
+        <li>
+            <ul>
+                <li>뷰 함수에서 HttpResponse 객체를 반환해서 응답.</li>
+                <li>뷰 함수에서 render 함수를 통해 템플릿 응답.</li>
+                <li>뷰 함수에서 redirect 함수를 통해 다른 뷰 재실행.</li>
+            </ul>
+        </li>
+    </ol>
+    <p>장고에서 요청-응답 처리를 하기 위해서 하단의 작업을 진행해야 한다.</p>
+    <ul>
+        <li>urls.py에 URL 패턴 등록하기.</li>
+        <li>views.py에 뷰 함수 작성하기.</li>
+    </ul>
+
+    <hr>
+
+    <h3>요청-응답 처리 코드 예제</h3>
+    <pre>
+        <span class="comment"># 최상위 URL 구성 파일에 URL 패턴을 등록하는 상황</span>
+        <span class="comment"># mysite/urls.py</span>
+        <span class="keyword">from</span> django.urls <span class="keyword">import</span> <span class="function">path, include</span>
+        <span class="keyword">from</span> board <span class="keyword">import</span> views
+
+        <span class="variable">urlpatterns</span> = <span class="variable">[</span>
+            <span class="comment"># board 앱의 home 뷰 함수를 실행시키는 URL 패턴.</span>
+            <span class="function">path</span>('', views.<span class="function">home</span>),
+            <span class="comment"># board 앱의 하위 URL 구성 파일을 연결시키는 URL 패턴.</span>
+            <span class="function">path</span>('board/', <span class="function">include</span>('board.urls')),
+        <span class="variable">]</span>
+    </pre>
+    <pre>
+        <span class="comment"># board 앱의 하위 URL 구성 파일에 URL 패턴을 등록하는 상황</span>
+        <span class="comment"># board/urls.py</span>
+        <span class="keyword">from</span> django.urls <span class="keyword">import</span> <span class="function">path</span>
+        <span class="keyword">from</span> . <span class="keyword">import</span> views
+
+        <span class="variable">urlpatterns</span> = <span class="variable">[</span>
+            <span class="comment"># board 앱의 board_list 뷰 함수를 실행시키는 URL 패턴.</span>
+            <span class="function">path</span>('list/', views.<span class="function">board_list</span>),
+            <span class="comment"># board 앱의 board_detail 뷰 함수를 실행시키는 URL 패턴.</span>
+            <span class="function">path</span>('detail/', views.<span class="function">board_detail</span>),
+        <span class="variable">]</span>
+    </pre>
+    <pre>
+        <span class="comment"># URL 패턴과 연결된 뷰 함수를 작성하는 상황</span>
+        <span class="comment"># board/views.py</span>
+        from django.http import HttpResponse
+        from django.template import loader
+        from django.shortcuts import render
+
+        def home(request):
+            # 문자열 데이터를 응답하는 경우.
+            return HttpResponse("응답할 문자열")
+        
+        def board_list(request):
+            # 템플릿을 응답하는 경우.
+            template = loader.get_template("board/list.html")
+            context = {}
+            return HttpResponse(template.render(context, request))
+        
+        def board_detail(request):
+            # 템플릿을 응답하는 경우.
+            return render(request, "board/detail.html")
+    </pre>
+
+    <hr>
+
+    <h2>클라이언트에서 서버로 데이터 전송하기</h2>
+    <p>요청 통신을 보낼 때 데이터를 전달할 수 있다.</p>
+    <ul>
+        <li>
+            URL 패턴의 일부로 보내기
+            <pre>
+                # urls.py
+                urlpatterns = [
+                    path('&lt;int:board_num&gt;', views.board_detail),
+                ]
+
+                # views.py
+                def board_detail(request, board_num):
+                    print(f"전달받은 {board_num=}")
+            </pre>
+        </li>
+        <li>
+            URL 패턴에서 키워드 인수로 보내기
+            <pre>
+                # urls.py
+                urlpatterns = [
+                    path('detail/', views.board_detail, {'type': 'free', 'date': datetime.now()}),
+                ]
+
+                # views.py
+                def board_detail(request, type, date):
+                    print(f"전달받은 데이터: {type=}, {date=}")
+            </pre>
+        </li>
+        <li>
+            HttpRequest 객체를 통해 보내기
+            <pre>
+                # http://127.0.0.1:8000/board/detail?board_num=100 으로 요청한 경우.
+                # views.py
+                def board_detail(request):
+                    if request.GET:
+                        print(f"전달받은 게시글 번호: {request.GET['board_num']}")
+            </pre>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>서버에서 클라이언트로 데이터 전송하기</h2>
+    <ul>
+        <li>
+            template 객체의 render 함수에 context 추가하기
+            <pre>
+                # views.py
+                def login(request):
+                    template = loader.get_template("user/login.html")
+                    context = {'result': 'success'}
+                    return HttpResponse(template.render(context, request))
+            </pre>
+        </li>
+        <li>
+            render 함수에 context 추가하기
+            <pre>
+                # views.py
+                def login(request):
+                    return render(request, "user/login.html", {'result': 'fail'})
+            </pre>
+        </li>
+    </ul>
+
+    <hr>
+
+    <a href="/">뒤로</a>
+</body>
+</html>

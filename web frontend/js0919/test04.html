@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        // 산술 연산자: + - * / %
+        console.log(20 / 3);
+        console.log(parseInt(20 / 3));
+        console.log(20 % 3);
+
+        // (복합) 대입 연산자: = += -= *= /= %=
+        let a = 10;
+        a += 20;
+        a -= 31;
+        a *= 2;
+        a /= 0.5;
+        a %= 2;
+        console.log(a);
+
+        // 증감 연산자: ++ --
+        let b = 10;
+        console.log(b);
+        b += 1;
+        console.log(b);
+        b++;  // 후위 증감 연산자: 연산자 우선 순위가 매우 낮음
+        console.log(b);
+        ++b;  // 전위 증감 연산자: 연산자 우선 순위가 매우 높음
+        console.log(b);
+
+        let num1 = 10;
+        let num2 = num1++;
+        console.log("num1:", num1, ", num2:", num2);
+        let num3 = 20;
+        let num4 = --num3;
+        console.log("num3:", num3, ", num4:", num4);
+
+        // 비교 연산자: == != < > <= >=
+        console.log(10 > 20);  // false
+        console.log(10 <= 20);  // true
+        console.log(0 == 0.0);  // true
+        console.log(0 == "");  // true
+        console.log(0 == false);  // true
+        console.log(0 == null);  // false => 값을 비교하기보다 초기화 여부를 확인하는 의미에 가까움.
+        console.log(0 == undefined);  // false => 값을 비교하기보다 초기화 여부를 확인하는 의미에 가까움.
+
+        // 동등성(equality) vs 동일성(identity)
+        // 동일 연산자: === !==
+        console.log(0 === "");  // false
+        console.log(0 === false);  // false
+
+        // 논리 연산자: && || !
+        console.log(true && false);  // false
+        console.log(false && true);  // false
+        console.log(true || false);  // true
+        console.log(false || true);  // true
+        console.log(!true);  // false
+        console.log(!false);  // true
+
+        // 삼항 연산자: (조건식) ? (참일 경우의 값) : (거짓일 경우의 값)
+        // (참일 경우의 값) if 조건식 else (거짓일 경우의 값)
+        let age = 20;
+        console.log(age >= 19 ? "성인입니다." : "미성년자입니다.");
+    </script>
+</head>
+<body>
+    <h1>연산자</h1>
+</body>
+</html>

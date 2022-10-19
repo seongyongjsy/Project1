@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        p {
+            /* 글자의 색깔을 바꾸는 속성 */
+            /* color: red; */
+            /* color: rgb(255, 0, 0); */
+            /* color: #FF0000; */
+            color: hsl(0, 100%, 50%);
+
+            /* 투명도를 적용하는 속성 */
+            opacity: 0.8;
+        }
+
+        p.p-1 {
+            /* 텍스트에 줄을 추가하는 속성 */
+            text-decoration: underline;
+
+            /* 텍스트에 그림자를 추가하는 속성 */
+            text-shadow: 1px 1px 3px green;
+
+            /* 공백 반영 방식을 변경하는 속성 */
+            white-space: pre;
+
+            /* 글자의 간격을 변경하는 속성 */
+            letter-spacing: 0.1em;
+        }
+
+        p.p-2 {
+            text-decoration: overline;
+            color: black;
+            text-shadow: -1px 0px 0px cyan, 1px 0px 0px magenta;
+            letter-spacing: 1em;
+        }
+
+        p.p-3 {
+            text-decoration: line-through;
+            color: white;
+            text-shadow: 3px 3px 5px black;
+            letter-spacing: 10em;
+        }
+    </style>
+</head>
+<body>
+    <h1>텍스트 관련 속성</h1>
+    <p class="p-1">안녕하세요?    홍길동입니다.    김철수의    친구입니다.</p>
+    <p class="p-2">안녕하세요! 김철수입니다. 홍길동의 친구입니다.</p>
+    <p class="p-3">안녕하세요... 김영희입니다. 저는 친구가 없습니다...</p>
+</body>
+</html>

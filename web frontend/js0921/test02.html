@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        window.onload = function() {
+            // on이벤트 속성을 이용해서 이벤트를 적용하는 방식
+            document.getElementById("li-2").onclick = function() {
+                alert("hi");
+            }
+        // 동일한 대상에 이벤트 중복 적용 불가 (덮어씌워짐).
+        document.getElementById("li-2").onclick = function() {
+            alert("hihi");
+        }
+        // 이벤트 리스너를 이용해서 이벤트를 적용하는 방식.
+        let li_3 = document.getElementById("li-3");
+        li_3.addEventListener("click", function() {
+            alert("bye");
+        });
+        // 동일한 대상에 이벤트 중복 적용 가능.
+        li_3.addEventListener("click", function() {
+            alert("byebye");
+            li_3.removeEventListener("click", this);  // 이벤트를 해제하는 코드.
+        });
+    }
+
+    function hello(){
+        alert("hello");
+    }
+    
+    function init() {
+        alert("로딩 완료. 이제 자바스크립트를 통해 DOM 조작이 가능합니다.");
+    }
+    </script>
+</head>
+<body onload="init();">
+    <h1>이벤트(Event)</h1>
+    <p>특정 상황 또는 사용자의 동작을 인식해서 정해진 코드를 수행하는 기능.</p>
+
+    <h2>이벤트 적용 방법</h2>
+    <ul>
+        <li onclick="alert('hello')";>HTML 태그에 on이벤트 속성 작성</li>
+        <li id="li-2">자바스크립트에서 DOM 객체에 on이벤트 속성에 함수 초기화.</li>
+        <li id="li-3">자바스크립트에서 이벤트 리스너 추가.</li>
+    </ul>
+</body>
+</html>

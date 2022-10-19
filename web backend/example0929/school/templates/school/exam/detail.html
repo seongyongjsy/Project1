@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>시험 상세</h1>
+
+    <ul>
+        <li>시험 제목: {{ exam.title }}</li>
+        <li>시험 과목: {{ exam.subject }}</li>
+        <li>응시 날짜: {{ exam.date }}</li>
+    </ul>
+
+    <h2>시험 점수</h2>
+    {# {% if score_list %} #}
+    {% if exam.score_set.all %}
+    <table border="1" style="border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 300px;">학생 ID</th>
+                <th style="width: 100px;">점수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {# {% for score in score_list %} #}
+            {% for score in exam.score_set.all %}
+            <tr>
+                <td>{{ score.student_id }}</td>
+                <td>{{ score.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>데이터가 없습니다.</p>
+    {% endif %}
+
+    <a href="/school/score/insert/?exam_id={{ exam.id }}">점수 입력</a><br>
+
+    <a href="/school/exam/list/">목록</a><br>
+    <!-- <a href="school/exam/list/">목록</a><br> -->
+    <!-- <a href="../list/">목록</a><br> -->
+</body>
+</html>

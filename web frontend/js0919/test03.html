@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        // 자료형 변환
+
+
+        // 문자열 -> 숫자
+        let a = "10";
+        a = parseInt(a);
+        console.log(a, typeof a);
+
+        let b = "3.14";
+        b = parseFloat(b);
+        console.log(b, typeof b);
+
+        let c = "20";
+        c = Number(c);
+        console.log(c, typeof c);
+        let d = "6.28";
+        d = Number(d);
+        console.log(d, typeof d);
+
+        console.log(parseInt("hello"));  // NaN
+        console.log(parseFloat("hi"));  // NaN
+        console.log(Number("bye"));  // NaN
+
+        console.log(parseInt("1234abcd5678"));  // 1234
+        console.log(parseFloat("12.34abcd5678"));  // 1234
+        console.log(Number("1234abcd5678"));  // NaN
+
+        console.log("====================");
+
+        // 숫자 -> 문자열
+        let aa = 10;
+        console.log(aa.toString(), typeof aa.toString());
+        console.log(aa.toString(2), typeof aa.toString(2));
+        console.log(aa.toString(8), typeof aa.toString(8));
+        console.log(aa.toString(16), typeof aa.toString(16));
+        let bb = 3.14;
+        console.log(bb.toString());
+        console.log(bb.toFixed());
+        console.log(bb.toFixed(1));
+        console.log(bb.toFixed(2));
+        console.log(bb.toFixed(3));
+        
+        console.log(String(aa), typeof String(aa));
+        console.log(String(bb), typeof String(bb));
+        console.log(aa + "", typeof (aa + ""));
+
+        console.log("====================");
+
+        // 기타 자료형 -> 논리형
+        console.log(0, Boolean(0));
+        console.log(1, Boolean(1));
+        console.log(0.0, Boolean(0.0));
+        console.log(-1.0, Boolean(-1.0));
+        console.log('""', Boolean(""));
+        console.log('hi', Boolean("hi"));
+        console.log(null, Boolean(null));
+        console.log(undefined, Boolean(undefined));
+    </script>
+</head>
+<body>
+    <h1>자료형</h1>
+</body>
+</html>

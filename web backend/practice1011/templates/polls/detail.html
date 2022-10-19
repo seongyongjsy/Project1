@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{{ question.text|truncatechars:30 }}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>{{ question.id }}</th>
+                <th>{{ question.date }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2">{{ question.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    {% if question.answer_set.all %}
+    <form action="{% url 'polls:choice' question_id=question.id %}" method="post">
+        {% csrf_token %}
+        <ul>
+            {% for answer in question.answer_set.all %}
+            <li>
+                <label>
+                    <input type="radio" name="answer_id" value="{{ answer.id }}">
+                    {{ answer.text }}
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="답변하기">
+    </form>
+    {% else %}
+    <div>등록된 답변이 없습니다.</div>
+    {% endif %}
+
+    <hr>
+
+    <a href="{% url 'polls:update' question_id=question.id %}">변경</a>
+    <a href="{% url 'polls:delete' question.id %}">삭제</a>
+    <a href="{% url 'polls:list' %}">목록</a>
+</body>
+</html>

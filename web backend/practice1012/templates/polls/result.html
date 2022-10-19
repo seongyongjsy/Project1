@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>설문 결과</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <table>
+        <tbody>
+            {% for answer in answer_list %}
+            <tr>
+                <td>{{ answer.text }}</td>
+                <td> - </td>
+                <td>{{ answer.count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'polls:detail' question_id=answer_list.0.question_id %}">다시 답변하기</a>
+    <a href="{% url 'polls:list' %}">설문 목록</a>
+</body>
+</html>

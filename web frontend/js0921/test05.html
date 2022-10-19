@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="jquery-3.6.1.min.js" ></script>
+    <script>
+        $(function() {
+            // html(): innerHTML 속성과 동일한 동작을 하는 메소드.
+            let divHTML = $("div").html();
+            console.log(divHtml);
+            $("div").html("<b>hi</b>");
+
+            // text(): innerText 속성과 동일한 동작을 하는 메소드.
+            let divTxt = $("div").text();
+            console.log(divTxt);
+            $("div").text("<b>hi</b>");
+        
+            // 자바스크립트 DOM 객체 vs 제이쿼리 객체
+            document.getElementsByTagName("div")[0].innerHTML = "<i>bye</i>";
+            $("div").html("<i>bye</i>");
+
+            // document.getElementsByTagName("div")[0].innerHTML = "<i>bye</i>";
+            // $("div").html() = "<i>bye</i>";
+            // document.getElementsByTagName("div")[0].html("<i>bye</i>");
+            // $("div").innerHTML = "<i>bye</i>";
+        
+            // val(): 자바스크립트 DOM 객체에서 value 속성에 대응하는 메소드.
+            console.log($("input:first")[0].val());
+            console.log($("input:eq(1)")[1].val());
+            console.log($("input:last")[2].val());
+            $("input:first").val("R");
+            $("input:eq(1)").val("G");
+            $("input:last").val("B");
+        });
+
+        function changeRed() {
+            // $("div").css("background-color", "red");
+            // $("div").removeClass(); $("div").addClass("red");
+            $("div").removeAttr("class"); $("div").attr("class", "red");
+        }
+        function changeGreen() {
+            // $("div").css({"background-color": "green"});
+            // $("div").removeClass(); $("div").addClass("green");  
+            $("div").removeAttr("class"); $("div").attr("class", "green");  
+        }
+        function changeBlue() {
+            // $("div").css("background-color", "blue");
+            // $("div").removeClass(); $("div").addClass("blue");
+            $("div").removeAttr("class"); $("div").attr("class", "blue");
+        }
+    </script>
+    <style>
+        div {width: 100px; height: 100px; border: 3px dashed black;}
+
+        .red {background-color: red;}
+        .green {background-color: green;}
+        .blue {background-color: blue;}
+    </style>
+</head>
+<body>
+    <h1>DOM 객체 조작과 관련된 제이쿼리 메소드</h1>
+    <div>hello</div>
+
+    <input type="button" value="red" onclick="changeRed();">
+    <input type="button" value="green" onclick="changeGreen();">
+    <input type="button" value="blue" onclick="changeBlue();">
+</body>
+</html>

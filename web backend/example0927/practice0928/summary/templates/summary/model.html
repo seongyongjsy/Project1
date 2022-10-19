@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>모델(Model)</h1>
+
+    <h2>개요</h2>
+    <ul>
+        <li>장고는 ORM 방식으로 데이터베이스를 연동한다.</li>
+        <li>이에 필요한 클래스를 모델이라고 부른다.</li>
+        <li>
+            모델 클래스는 데이터베이스의 테이블에 대응되며,
+            모델을 통해 만들어진 객체는 테이블의 레코드에 대응된다.
+            모델에 작성한 클래스 변수는 테이블의 필드에 대응된다.
+        </li>
+    </ul>
+
+    <h2>대응 체계</h2>
+    <table border="1">
+        <tr>
+            <th>장고 모델</th>
+            <th>데이터베이스</th>
+        </tr>
+        <tr>
+            <td>클래스</td>
+            <td>테이블</td>
+        </tr>
+        <tr>
+            <td>객체</td>
+            <td>레코드(테이블의 행)</td>
+        </tr>
+        <tr>
+            <td>클래스 변수</td>
+            <td>필드(테이블의 열)</td>
+        </tr>
+    </table>
+
+    <h2>모델 작성 방법</h2>
+    <ul>
+        <li>각 앱 내 models.py 파일에 작성한다.</li>
+        <li>django.db.models.Model 클래스를 상속하는 하위 클래스를 작성한다.</li>
+        <li>테이블의 필드를 나타내기 위해 클래스 변수를 작성한다.</li>
+        <li>클래스 변수의 자료형과 옵션을 적절히 작성한다.(후술).</li>
+    </ul>
+
+    <h2>모델 적용 방법</h2>
+    <ul>
+        <li>마이그레이션을 실행하면 작성한 모델 내용에 따라 자동으로 테이블을 생성한다.</li>
+        <li>테이블 이름은 앱이름_모델이름 으로 설정한다.</li>
+        <li>필드 이름은 클래스 변수 이름으로 설정한다.</li>
+        <li>자료형과 제약조건은 설정된 데이터베이스에 따라 자동으로 적용한다.</li>
+    </ul>
+
+    <hr>
+
+    <h2>필드의 종류</h2>
+    <p>모델에 작성할 수 있는 필드의 종류에 대해 서술.</p>
+
+    <ul>
+        <li>IntegerField: 32비트의 정수형 필드. 모든 데이터베이스에 대해 안전한 자료형.</li>
+        <li>BigIntegerField: 64비트의 정수형 필드.</li>
+        <li>FloatField: 부동소수점 실수형 필드. 파이썬의 float 자료형과 호환.</li>
+        <li>DecimalField: 고정소수점 실수형 필드. 파이썬의 Decimal 클래스와 호환.</li>
+        <li>CharField: 짧은 문자열을 저장하는 필드. max_length 옵션을 반드시 작성해야 함.</li>
+        <li>TextField: 긴 문자열을 저장하는 필드. max_length 옵션을 추가할 수도 있음.</li>
+        <li>BoolenField: 논리형 필드. 주로 checkbox 등과 같이 사용.</li>
+        
+        <li>DateField: 날짜 데이터 필드. 파이썬의 datetime.date 클래스와 호환.</li>
+        <li>TimeField: 시간 데이터 필드. 파이썬의 datetime.time 클래스와 호환.</li>
+        <li>DatetimeField: 날짜-시간 데이터 필드. 파이썬의 datetime.datetime 클래스와 호환.</li>
+        
+        <li>ForeignKey: 외래키를 나타내기 위한 필드.</li>
+    </ul>
+    <ul>
+        <li>AutoField: 자동으로 증가하는 IntegerField</li>
+        <li>BigAutoField: 자동으로 증가하는 BigIntegerField</li>
+        
+        <li>EmailField: Email 주소를 입력하는데 특화된, CharField를 상속하는 필드. </li>
+        <li>URLField: URL 값을 입력하는데 특화된, CharField를 상속하는 필드.</li>
+        <li>FilePathField: 파일 경로를 저장하는데 특화된, CharField를 상속하는 필드.</li>
+        
+        <li>FileField: 파일을 저장할 때 사용하는 필드.</li>
+        <li>ImageField: 이미지 파일을 저장할 때 사용하는 필드.</li>
+    </ul>
+
+    <h2>옵션의 종류</h2>
+    <p>필드를 작성할 때 추가할 수 있는 옵션. 주로 제약조건을 나타낸다.</p>
+
+    <ul>
+        <li>primary_key: 기본키 제약조건을 추가할 때 사용하는 옵션.</li>
+        <li>unique: UNIQUE 제약조건을 추가할 때 사용하는 옵션.</li>
+        <li>null: NOT NULL 제약조건을 해제할 때 사용하는 옵션.</li>
+        <li>blank: 데이터를 검증하지 않는 옵션.</li>
+        <li>default: DEFAULT 제약조건을 추가할 때 사용하는 옵션.</li>
+    </ul>
+    <p>
+        null=True은 테이블에 데이터가 누락된 것을 허용하는 옵션이고,
+        blank=True는 웹 앱에서 데이터 누락 검증을 하지 않는다는 옵션이다.
+    </p>
+
+    <hr>
+
+    <a href="/">뒤로</a>
+</body>
+</html>

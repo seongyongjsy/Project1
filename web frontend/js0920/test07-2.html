@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        // 일정 간격으로 함수를 반복 실행하는 함수.
+        let interval = setInterval(function() {
+            moveBy(100, 100);  // 창의 위치를 현재 위치에서 상대적으로 이동시키는 함수.
+            // moveTo(100, 100);  // 창의 위치를 고정 위치에서 절대적으로 이동시키는 함수.
+            // resizeBy(50, 50);  // 창의 크기를 상대적으로 변경시키는 함수.
+            // resizeTo(500, 500);  // 창의 크기를 절대적으로 변경시키는 함수.
+        }, 500);
+        setTimeout(function() {
+            clearInterval(interval);  // 적용된 Interval을 취소하는 함수.
+        }, 5000);
+    </script>
+</head>
+<body>
+    <h1>새 창 테스트</h1>
+    <p>창이 잘 열렸나요?</p>
+</body>
+</html>

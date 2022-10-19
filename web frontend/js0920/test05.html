@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let obj = {
+            "key1": "value1",
+            'key2': 2,
+            key3: true,
+            key4: [1, 10, 100],
+            key5: function() {
+                alert("hey");
+            },
+            key6: {
+                a: 10,
+                b: 20
+            }
+        }
+        console.log(obj);
+        console.log(typeof obj);
+        obj.key5();  // key5에 저장된 함수(메소드) 실행.
+        let inner_obj = obj.key6;  // key6에 저장된 객체를 꺼내서 변수에 저장.
+        console.log(inner_obj);
+
+        // 객체에서 속성 꺼내오기
+        console.log(obj.key1);  // . 기호와 키 이름을 이용해서 속성값 꺼내오기 가능.
+        // console.log(obj."key1");  // 객체 안에 저장된 값(속성)을 꺼내올 때 따옴표 사용 불가.
+        console.log(obj["key2"]);  // [] 기호와 키 문자열을 이용해서 속성값 꺼내오기 가능.
+        let key2 = "key3";
+        console.log(obj[key2]);  // [] 기호와 문자열 변수를 이용해서 속성값 꺼내오기 가능.
+
+        // 기존에 저장된 속성값 변경하기
+        obj.key2 = 22;
+        obj["key3"] = false;
+        console.log(obj);
+        
+        // 객체에 새로운 속성 추가하기
+        obj.key6 = "hello";
+        obj["key7"] = "hi";
+        console.log(obj);
+
+        // 객체에 저장되어 있던 속성 제거하기
+        delete obj.key6;
+        delete obj["key7"];
+        console.log(obj);
+    </script>
+</head>
+<body>
+    <h1>객체(Object)</h1>
+    <p>여러 개의 데이터(값)를 이름표(키)를 붙여서 묶어서 저장하는 수단.</p>
+</body>
+</html>

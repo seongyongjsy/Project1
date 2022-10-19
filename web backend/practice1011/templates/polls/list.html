@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>설문 목록</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>설문 목록</h1>
+
+    {% if question_list|length > 0 %}
+    <table border="1" style="border-collapse: collapse">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>내용</th>
+                <th>등록일</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in question_list %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>
+                    <a href="{% url 'polls:detail' question_id=question.id %}">{{ question.text|truncatechars:50 }}</a>
+                </td>
+                <td>
+                    {% if question.was_published_recently %}
+                    {{ question.date|date:'H:i:s' }}
+                    {% else %}
+                    {{ question.date|date:'Y-m-d' }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div>등록된 설문이 없습니다.</div>
+    {% endif %}
+
+    <a href="{% url 'polls:create' %}">설문 등록</a>
+</body>
+</html>

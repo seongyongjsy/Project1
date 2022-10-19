@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        // Boolean 자료형.
+        // 참 또는 거짓 상황을 나타내는 자료형.
+        let a = true;
+        let b = false;
+        console.log(a, typeof a);
+        console.log(b, typeof b);
+
+        // 다른 자료형을 boolean 자료형처럼 취급 가능.
+        // let c = true;
+        // let c = false;
+        // let c = 0;  // false로 취급.
+        // let c = 1;  // true로 취급.
+        // let c = -1;  // true로 취급.
+        // let c = "";  // false로 취급.
+        // let c = "false";  // true로 취급.
+        // let c;  // false로 취급.
+        let c = null;  // false로 취급.
+        if (c) {
+            console.log("true로 인식.");
+        } else {
+            console.log("false로 인식.");
+        }
+
+        // null 자료형.
+        // 값이 할당되지 않았음을 나타내는 자료형. 주로 객체에 사용.
+        let d = null;
+        console.log(d, typeof d);
+
+        // undefined 자료형.
+        // 변수가 초기화되지 않았음을 나타내는 자료형.
+        let e;
+        console.log(e, typeof e);
+        if (e == undefined) {
+            // 변수가 아직 초기화되지 않은 경우 실행할 코드.
+        }
+    </script>
+</head>
+<body>
+    <h1>자료형</h1>
+</body>
+</html>

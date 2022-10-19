@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>마이그레이션</h1>
+    <p>
+        모델에 작성된 내용에 따라, 데이터베이스에 테이블을 생성하는 기능.
+    </p>
+
+    <h2>마이그레이션 작업 순서</h2>
+    <ol>
+        <li>마이그레이션 파일 생성.</li>
+        <li>마이그레이션 파일 적용.</li>
+    </ol>
+
+    <h3>마이그레이션 파일 생성.</h3>
+    <p>모델의 내용을 DB에 적용하기 전, 적용할 내용들을 기록하는 파일을 생성하는 단계.</p>
+    <p>명령어를 실행하면 앱 내 migrations 폴더에 순차적으로 파일이 기록됨.</p>
+    <p>마이그레이션 파일을 함부로 삭제하면 마이그레이션 작업이 안될 수 있음.</p>
+    <p>ex) py manage.py makemigrations board</p>
+
+    <h3>마이그레이션 파일 적용.</h3>
+    <p>생성된 마이그레이션 파일을 데이터베이스에 적용하는 단계.</p>
+    <p>앱 이름, 파일 번호를 지정하지 않으면 모든 앱의 최신 버전의 파일에 대해 적용함.</p>
+    <p>파일 번호를 지정하지 않으면 지정된 앱의 최신 버전의 파일에 대해 적용함.</p>
+    <p>앱 이름, 파일 번호를 지정하면 지정된 앱의 지정된 번호의 파일에 대해 적용함.</p>
+    <p>ex) py manage.py migrate</p>
+    <p>ex) py manage.py migrate board</p>
+    <p>ex) py manage.py migrate board 0002</p>
+    
+    <hr>
+
+    <h3>마이그레이션 파일 내역 확인</h3>
+    <p>지정된 앱에 대해 모든 마이그레이션 파일의 목록과 적용 여부를 출력하는 명령어.</p>
+    <p>ex) py manage.py showmigrations board</p>
+    <p>ex) py manage.py showmigrations user board admin ...</p>
+
+    <h3>마이그레이션 쿼리문 확인</h3>
+    <p>지정된 앱의 지정된 파일 번호에 대해 실행할 쿼리문을 출력하는 명령어.</p>
+    <p>ex) py manage.py sqlmigrate board 0002</p>
+
+    <hr>
+
+    <a href="/">뒤로</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>학생 명단</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>학생 명단</h1>
+
+    <table border="1" style="border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 100px;">학년</th>
+                <th style="width: 100px;">반</th>
+                <th style="width: 300px;">이름</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in student_list %}
+            <tr>
+                <td>{{ student.grade }}</td>
+                <td>{{ student.st_class }}</td>
+                <td>{{ student.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">홈으로</a>
+</body>
+</html>

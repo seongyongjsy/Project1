@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>점수 입력</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <form action="/school/score/insert/" method="post">
+        {% csrf_token %}
+        <ul>
+            <li>시험 ID: <input type="text" name="exam_id" value="{{ exam_id }}" readonly="readonly"></li>
+            <li>학생 ID: <input type="text" name="student_id"></li>
+            <li>점수: <input type="text" name="score"></li>
+        </ul>
+        <input type="submit" value="입력">
+    </form>
+    <a href="">뒤로</a>
+</body>
+</html>

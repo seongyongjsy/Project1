@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let str = "Hello, World! Hi, Students!";
+
+        console.log("startsWith():", str.startsWith("H"));
+        console.log("endsWith():", str.endsWith("!"));
+        console.log("indexOf():", str.indexOf("o"));
+        console.log("charAt():", str.charAt(10));
+
+        console.log("search():", str.search("Hi"));
+        console.log("match():", str.match("Students"));
+        console.log("search():", str.search("Bye"));
+        console.log("match():", str.match("Teacher"));
+
+        console.log("slice():", str.slice(7, 12));
+        console.log("substring():", str.substring(7, 12));
+        console.log("substr():", str.substr(7, 5));
+
+        console.log("replace():", str.replace("Hi", "Bye"));
+        console.log("replace():", str.replace("o", "00"));
+        console.log("replaceAll():", str.replaceAll("o", "00"));
+
+        console.log("split():", str.split(" "));
+        console.log("concat():", str.concat(" Bye, Teacher!"));
+
+        console.log("trim():", "    abcd    efgh    ".trim());
+
+        for (let i = 0; i < str.length; i++) {
+            console.log(str.charAt(i));
+        }
+
+        let strArr = str.split(" ");
+        for (let i = 0; i < strArr.length; i++) {
+            console.log(strArr[i]);
+        }
+    </script>
+</head>
+<body>
+    <h1>문자열 메소드</h1>
+</body>
+</html>

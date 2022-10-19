@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let num;
+        while (true) {
+            num = parseInt(prompt("2 이상의 정수를 입력하세요."));
+            if (num > 1)
+                break;
+        }
+
+        let isPrime = true;
+        for (let i = 2; i < num; i++) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+
+        if (isPrime) document.write("입력하신 " + num + "은(는) 소수입니다.");
+        else document.write("입력하신 " + num + "은(는) 소수가 아닙니다.");
+    </script>
+</head>
+<body>
+    <h1>제어문 예제</h1>
+</body>
+</html>

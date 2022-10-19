@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="jquery-3.6.1.min.js"></script>
+    <script src="example01.js"></script>
+</head>
+<body>
+    <h1>로그인</h1>
+    <form>
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>
+                    <input type="text" name="userid" required="required">
+                    <div id="id-msg">ID는 4~8 글자 사이로 입력하세요.</div>
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" name="userpw" required="required">
+                    <div id="pw-msg">비밀번호는 8~12 글자 사이로 입력하세요.</div>
+                </td>
+            </tr>
+        </table>
+        <input type="button" value="로그인">
+    </form>
+</body>
+</html>

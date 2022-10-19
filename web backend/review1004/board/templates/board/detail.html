@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{{ board.title }}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse;">
+        <tr>
+            <th>{{ board.num }}</th>
+            <th>{{ board.title }}</th>
+            <th>{{ board.writer }}</th>
+            <th>{{ board.date }}</th>
+        </tr>
+        <tr>
+            <td colspan="4">
+                {% if board.content %}
+                {{ board.content }}
+                {% else %}
+                &nbsp;
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    {# {{ reply_list }} #}
+    {% if reply_list %}
+    <hr>
+    <table border="1" style="border-collapse: collapse;">
+        {% for reply in reply_list %}
+        <tr>
+            <td>{{ reply.writer }}</td>
+            <td>{{ reply.content }}</td>
+            <td>{{ reply.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="/board/list/">목록</a>
+</body>
+</html>

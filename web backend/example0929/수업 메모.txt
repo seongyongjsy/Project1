@@ -1,0 +1,53 @@
+<< FK 필드를 가지는 모델의 데이터를 생성하는 방법 >>
+
+1. FK 열을 지정해서 직접 값을 입력하는 방법
+Score.objects.create(student_id=1, exam_id=1, score=70)
+
+2. FK 클래스 변수에 PK 객체를 입력하는 방법
+soo = Student.objects.get(name='김철수')
+ex = Exam.objects.get(id=2)
+Score.objects.create(student=soo, exam=ex, score=80)
+
+3. PK 객체를 통해서 FK 객체를 간접적으로 생성하는 방법
+hee = Student.objects.get(id=3)
+hee.score_set.create(exam_id=3, score=100)
+
+
+==============================
+
+
+<< 경로 설정 방식 >>
+- a 태그의 href 속성 등에 이동할 경로를 작성할 때 사용할 수 있는 방식
+1. 절대 경로 방식: 특정 위치(http://127.0.0.1:8000/)를 기준으로 경로를 설정하는 방식
+2. 대 경로 방식: 현재 경로를 기준으로 경로를 설정하는 방식
+
+ex)
+현재 페이지의 URL이 아래와 같을 때,
+http://127.0.0.1:8000/school/exam/detail/
+
+1. 아래와 같은 경로를 통해 이동하면,
+<a href="/school/exam/list/">...</a>
+아래의 URL로 이동을 시도한다.
+http://127.0.0.1:8000/school/exam/list/
+
+2. 아래와 같은 경로를 통해 이동하면,
+<a href="school/exam/list/">...</a>
+아래의 URL로 이동을 시도한다.
+http://127.0.0.1:8000/school/exam/detail/school/exam/list/
+
+3. 아래와 같은 경로를 통해 이동하면,
+<a href="../list/">...</a>
+아래의 URL로 이동을 시도한다.
+http://127.0.0.1:8000/school/exam/list/
+
+
+==============================
+
+
+<< 응답 방식 >>
+1. HttpResponse 객체를 이용한 방식
+2. render 함수를 이용한 방식
+3. redirect 함수를 이용한 방식
+
+<< Redirect >>
+뷰에서 응답할 때, 브라우저로 하여금 지정된 URL로 다시 요청하도록 명령하는 방식.

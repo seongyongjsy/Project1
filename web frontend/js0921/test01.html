@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        // HTML 요소를 선택하고 조작하고자 할 때, 웹 페이지의 로딩이 끝난 후 작업하길 권장.
+        window.onload = function(){
+            let p = document.getElementById("explanation");  // id 속성값을 이용해서 HTML 요소를 선택하는 메소드.
+            console.log(p); // 위에서 p 태그를 선택해서 자바스크립트 객체로 반환.
+            console.log(typeof p);  // 자료형은 object.
+            let hn = document.getElementsByClassName("title");  // class 속성값을 이용해서 HTML 요소를 선택하는 메소드.
+            console.log(hn); // 위에서 h 요소들을 선택해서 자바스크립트 배열로 반환.
+            console.log(hn[0]);  // 배열에서 첫 번째 요소(h1) 선택.
+            console.log(hn[1]);  // 배열에서 두 번째 요소(h2) 선택.
+
+            console.log(p.innerHTML);   // 지정한 요소 내 HTML 요소 + 텍스트 선택.
+            console.log(p.innerText);   // 지정한 요소 내 텍스트 선택.
+
+            p.innerHTML += "<br>이제 웹 문서를 조작할 수 있습니다." // 지정한 요소 내 HTML 요소 + 텍스트 작성.
+            // p.innerText += "<br>이제 웹 문서를 조작할 수 있습니다." // 지정한 요소 내 텍스트 작성.
+
+            hn[0].style = "color: red;";    // 지정한 요소의 style 속성 추가.
+            hn[0].style = "color: red; background-color: yellow;";  // 지정한 요소의 style 속성 변경(덮어씌우기).
+            
+            console.log(p.id);  // 지정한 요소의 id 속성값 확인.
+            console.log(hn[1].className);  // 지정한 요소의 class 속성값 확인.
+            hn[1].className += " sub-title";   // 지정한 요소의 class 속성 변경(덮어씌우기).
+
+            console.log(document.getElementById("input-box").value);    // 지정한 요소의 value 속성값 확인.
+            document.getElementById("input-box").value = "hi";  // 지정한 요소의 value 속성 변경(덮어씌우기).
+        
+            let input = document.getElementById("input-box");   // 변수에 HTML 요소 저장.
+            input.value = "bye";   // HTML 요소의 value 속성값 변경
+
+            let value = document.getElementById("input-box").value; // 변수에 value 속성값(문자열) 저장.
+            value = "sayonara"; // 변수에 저장된 문자열 재초기화.
+            
+        }
+        
+    
+    </script>
+</head>
+<body>
+    <h1 class="title">문서 객체 모델</h1>
+    <p id="explanation">
+        <span><b>웹 문서를 조작하는 기능</b>을 제공하는 <i>자바스크립트</i> 객체.</span>
+    </p>
+
+    <h2 class="title">문서 객체 모델의 종류</h2>
+    <ul>
+        <li>document</li>
+        <li>HTML 요소를 자바스크립트 객체로 표현한 객체</li>
+    </ul>
+
+    <input id="ipt" type="text"  value="hello">
+</body>
+</html>

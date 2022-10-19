@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        div#box-1 {
+            /* 콘텐츠 영역의 크기를 조절하는 속성. */
+            /* 블록 요소의 경우, 기존에 차지하던 콘텐츠 영역을 마진으로 채움 */
+            width: 200px;
+            height: 200px;
+
+            /* 표현 방식(블록, 인라인, etc...)을 변경하는 속성 */
+            /* display: inline; */
+
+            background-color: red;
+
+            /* 테두리 두께, 모양, 색상을 지정하는 속성 */
+            border-top-width: 3px;
+            border-top-style: solid;
+            border-top-color: black;
+
+            border-right-width: 5px;
+            border-right-style: dashed;
+            border-right-color: cyan;
+
+            border-bottom-width: 7px;
+            border-bottom-style: dotted;
+            border-bottom-color: magenta;
+
+            border-left-width: 9px;
+            border-left-style: double;
+            border-left-color: yellow;
+        }
+
+        span#box-2 {
+            /* 인라인 요소의 경우, 콘텐츠 영역의 크기가 항상 자동으로 설정됨 */
+            width: 200px;
+            height: 200px;
+
+            /* 표현 방식(블록, 인라인, etc...)을 변경하는 속성 */
+            display: block;
+
+            background-color: green;
+
+            /* 테두리 관련 단축 속성 */
+            /* 각 면의 테두리의 두께, 모양, 색상을 일괄 적용하는 단축 속성 */
+            /* 방향을 고정하고, 두께, 모양, 색상을 차례대로 설정 */
+            /* border-top: 3px groove lightgray;
+            border-right: 5px ridge darkgray;
+            border-bottom: 7px ridge darkgray;
+            border-left: 9px groove lightgray; */
+
+            /* 네 면의 두께/모양/색상을 일괄 적용하는 단축 속성 */
+            /* 설정할 옵션을 고정하고, 방향을 차례대로 설정(위쪽부터 시계 방향) */
+            border-width: 3px 5px 7px 9px;
+            border-style: groove ridge ridge groove;
+            border-color: lightgray darkgray darkgray lightgray;
+
+            /* 기본적으로 네 면의 값을 차례대로 입력하고, 생략하면 맞은 편의 값으로 설정 */
+            /* border-width: 5px 10px 20px; 왼쪽 생략 => 오른쪽의 값으로 설정 */
+            /* border-width: 5px 20px; 왼쪽 아래쪽 생략 => 오른쪽 위쪽의 값으로 설정 */
+            /* border-width: 5px; 왼쪽 아래쪽 오른쪽 생략 => 위쪽의 값으로 설정 */
+        }
+
+        div#box-3 {
+            width: 200px;
+            height: 200px;
+
+            background-color: blue;
+
+            /* 네 면의 테두리를 일괄 적용하는 단축 속성 */
+            border: 1px solid black;
+
+            /* 모서리를 둥글게 표현하는 속성 */
+            border-radius: 10px;
+
+            /* 요소(주로 박스 형태)에 그림자를 추가하는 속성 */
+            box-shadow: 3px 3px 5px orange;
+        }
+
+        div#box-4 {
+            width: 200px;
+            height: 200px;
+            background-color: cyan;
+
+            /* 테두리 외부의 여백을 설정하는 속성 */
+            /* 직접 마진을 바꾸면 다른 요소의 마진과 중첩될 수도 있음 */
+            margin-bottom: 10px;
+            /* margin-left: 100px; */
+
+            /* 테두리 내부의 여백을 설정하는 속성 */
+            padding: 10px;
+        }
+
+        div#box-5 {
+            width: 200px;
+            height: 200px;
+            background-color: magenta;
+
+            margin-top: 10px;
+            /* margin-right: 50px; */
+
+            /* 블록 요소의 콘텐츠 기준 오른쪽 모든 여백을 정확하게 왼쪽, 오른쪽 절반으로 나누는 코드 */
+            /* margin-left: auto;
+            margin-right: auto; */
+
+            /* 위, 아래는 0, 왼쪽, 오른쪽은 자동(가운데 정렬)하는 코드 */
+            /* margin: 0 auto; */
+
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS 박스 모델</h1>
+    <ul>
+        <li>어떤 HTML 요소든, 콘텐츠 영역, 패딩 영역, 테두리 영역, 마진 영역을 가질 수 있음.</li>
+        <li>기본적으로 HTML 요소들은 서로의 영역을 침범하지 않는 형태로 표현됨.</li>
+        <li>따로 설정하지 않으면 기본적으로 패딩, 테두리, 마진 영역은 없지만 일부 HTML 요소는 자동으로 설정됨.</li>
+        <li>콘텐츠, 패딩, 테두리, 마진 영역과 관련된 속성들과 이와 관련된 문법들을 통틀어 CSS 박스 모델이라고 부름.</li>
+    </ul>
+    <ul>
+        <li>마진(margin): 외부 여백.</li>
+        <li>테두리(border): 콘텐츠의 경계.</li>
+        <li>패딩(padding): 내부 여백.</li>
+        <li>콘텐츠 영역(content area): 실제로 내용물을 표시하는 영역.</li>
+    </ul>
+
+    <div id="box-1">box1</div>
+    <span id="box-2">box2</span>
+    <div id="box-3">box3</div>
+    <div id="box-4">box4</div>
+    <div id="box-5">box5</div>
+</body>
+</html>
